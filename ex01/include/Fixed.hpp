@@ -23,8 +23,8 @@ class Fixed
 	// const constructor for float
 	Fixed(const float floatValue);
 
-	// // COPY assignment operator overload
-	// Fixed &operator=(const Fixed &other);
+	// COPY assignment operator overload
+	Fixed &operator=(const Fixed &other);
 	// destructor
 	~Fixed();
 

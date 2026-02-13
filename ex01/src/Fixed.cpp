@@ -8,8 +8,7 @@ Fixed::Fixed()
 // copy constructor
 Fixed::Fixed(const Fixed &other)
 {
-	this->fixedPointValue = other.getRawBits();
-	// std::cout << "Copy assignment operator called" << std::endl;
+	this->fixedPointValue = other.fixedPointValue;
 	std::cout << "Copy constructor called" << std::endl;
 }
 
@@ -24,6 +23,16 @@ Fixed::Fixed(const float floatValue)
 {
 	this->fixedPointValue = roundf(floatValue * (1 << fractionalBits));
 	std::cout << "Float constructor called" << std::endl;
+}
+// COPY assignment operator overload
+Fixed &Fixed::operator=(const Fixed &other)
+{
+	if (this != &other)
+	{
+		this->fixedPointValue = other.fixedPointValue;
+	}
+	std::cout << "Copy assignment operator called" << std::endl;
+	return (*this);
 }
 // destructor
 
