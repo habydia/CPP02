@@ -27,18 +27,18 @@ class Fixed
 
 	// comparators overload
 	Fixed &operator=(const Fixed &other);
-	bool operator>(const Fixed &other);
-	bool operator<(const Fixed &other);
-	bool operator>=(const Fixed &other);
-	bool operator<=(const Fixed &other);
-	bool operator==(const Fixed &other);
-	bool operator!=(const Fixed &other);
+	bool operator>(const Fixed &other) const;
+	bool operator<(const Fixed &other) const;
+	bool operator>=(const Fixed &other) const;
+	bool operator<=(const Fixed &other) const;
+	bool operator==(const Fixed &other) const;
+	bool operator!=(const Fixed &other) const;
 
-	// // arithmetic overloads
-	Fixed &operator+(const Fixed &other);
-	Fixed &operator-(const Fixed &other);
-	Fixed &operator*(const Fixed &other);
-	Fixed &operator/(const Fixed &other);
+	// arithmetic overloads
+	Fixed operator+(const Fixed &other) const;
+	Fixed operator-(const Fixed &other) const;
+	Fixed operator*(const Fixed &other) const;
+	Fixed operator/(const Fixed &other) const;
 	// // increment / decrement overloads for fixed point values
 	Fixed &operator++();   // prefix
 	Fixed operator++(int); // postfix

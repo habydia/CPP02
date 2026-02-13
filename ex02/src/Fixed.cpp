@@ -50,41 +50,41 @@ Fixed &Fixed::operator=(const Fixed &other)
 	}
 	return (*this);
 }
-bool Fixed::operator>(const Fixed &other)
+bool Fixed::operator>(const Fixed &other) const
 {
 	if (this->fixedPointValue > other.getRawBits())
 		return (true);
 	return (false);
 }
-bool Fixed::operator<(const Fixed &other)
+bool Fixed::operator<(const Fixed &other) const
 {
 	if (this->fixedPointValue < other.getRawBits())
 		return (true);
 	return (false);
 }
 
-bool Fixed::operator>=(const Fixed &other)
+bool Fixed::operator>=(const Fixed &other) const
 {
 	if (this->fixedPointValue >= other.getRawBits())
 		return (true);
 	return (false);
 }
 
-bool Fixed::operator<=(const Fixed &other)
+bool Fixed::operator<=(const Fixed &other) const
 {
 	if (this->fixedPointValue <= other.getRawBits())
 		return (true);
 	return (false);
 }
 
-bool Fixed::operator==(const Fixed &other)
+bool Fixed::operator==(const Fixed &other) const
 {
 	if (this->fixedPointValue == other.getRawBits())
 		return (true);
 	return (false);
 }
 
-bool Fixed::operator!=(const Fixed &other)
+bool Fixed::operator!=(const Fixed &other) const
 {
 	if (this->fixedPointValue != other.getRawBits())
 		return (true);
@@ -92,28 +92,34 @@ bool Fixed::operator!=(const Fixed &other)
 }
 
 // arithmetic overloads
-Fixed &Fixed::operator+(const Fixed &other)
+Fixed Fixed::operator+(const Fixed &other) const
 {
-	setRawBits(this->fixedPointValue + other.fixedPointValue);
-	return (*this);
+	Fixed result;
+	result.setRawBits(this->fixedPointValue + other.fixedPointValue);
+	return result;
 }
 
-Fixed &Fixed::operator-(const Fixed &other)
+Fixed Fixed::operator-(const Fixed &other) const
 {
-	setRawBits(this->fixedPointValue - other.getRawBits());
-	return (*this);
+	Fixed result;
+	result.setRawBits(this->fixedPointValue - other.fixedPointValue);
+	return result;
 }
 
-Fixed &Fixed::operator*(const Fixed &other)
+Fixed Fixed::operator*(const Fixed &other) const
 {
-	setRawBits(this->fixedPointValue * other.getRawBits());
-	return (*this);
+	Fixed result;
+	long long temp = (long long)this->fixedPointValue * other.fixedPointValue;
+	result.setRawBits((int)(temp >> fractionalBits));
+	return result;
 }
 
-Fixed &Fixed::operator/(const Fixed &other)
+Fixed Fixed::operator/(const Fixed &other) const
 {
-	setRawBits(this->fixedPointValue / other.getRawBits());
-	return (*this);
+	Fixed result;
+	long long temp = (long long)this->fixedPointValue << fractionalBits;
+	result.setRawBits((int)(temp / other.fixedPointValue));
+	return result;
 }
 
 // increment / decrement overloads for fixed point values
